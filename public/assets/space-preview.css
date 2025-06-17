@@ -1,0 +1,40 @@
+.container {
+    display: grid;
+    border: 4px solid #333;
+    gap: 1px;
+    background-color: #fff;
+    width: max-content;
+}
+
+.cell:hover {
+    background: #fff;
+    cursor: default;
+}
+
+.chair {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: center center;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.chair:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+/* Blue tint on hover */
+.chair:hover .seat {
+    background: #0a66c2; /* Primary blue */
+}
+
+.chair:hover .backrest {
+    background: #0c74de; /* Slightly lighter blue */
+}
+
+.chair:hover .armrest-left,
+.chair:hover .armrest-right {
+    background: #0c74de;
+}

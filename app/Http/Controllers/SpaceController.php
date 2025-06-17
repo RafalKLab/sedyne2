@@ -43,7 +43,7 @@ class SpaceController extends Controller
 
         $layoutArr = json_decode($layout,true);
 
-        foreach ($layoutArr as $index => $item) {
+        foreach ($layoutArr['layout'] as $index => $item) {
             if ($item['type'] === 'chair') {
                 Seat::create([
                     'space_id' => $id,
