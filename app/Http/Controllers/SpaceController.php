@@ -15,7 +15,7 @@ class SpaceController extends Controller
     {
         $spaces = Space::all();
 
-        return view('index', compact('spaces'));
+        return view('space.index', compact('spaces'));
     }
 
     public function storeSpace(Request $request)
@@ -26,7 +26,7 @@ class SpaceController extends Controller
 
         Space::create($validated);
 
-        return redirect()->route('home');
+        return redirect()->route('spaces');
     }
 
     public function setupLayout(int $id)
@@ -53,7 +53,7 @@ class SpaceController extends Controller
         $space->layout = $layout;
         $space->save();
 
-        return redirect()->route('home');
+        return redirect()->route('spaces');
     }
 
     public function previewSpace(int $id)
