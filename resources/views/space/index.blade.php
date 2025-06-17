@@ -40,7 +40,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @forelse ($spaces as $index => $space)
+                @forelse ($spaces as $space)
                     <tr>
                         <td>{{ $space->id  }}</td>
                         <td class="fw-medium">{{ $space->name }}</td>

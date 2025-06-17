@@ -7,13 +7,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Seat;
 use App\Models\Space;
+use App\Services\SpaceService;
 use Illuminate\Http\Request;
 
 class SpaceController extends Controller
 {
+    public function __construct(protected SpaceService $spaceService) {}
+
     public function index()
     {
-        $spaces = Space::all();
+        $spaces = $this->spaceService->findAll();
 
         return view('space.index', compact('spaces'));
     }
