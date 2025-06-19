@@ -20,4 +20,9 @@ class SpaceService
     {
         return $this->repository->findAll();
     }
+
+    public function find(int $id): ?SpaceData
+    {
+        return $this->repository->find($id);
+    }
 }

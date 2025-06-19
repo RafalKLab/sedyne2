@@ -9,6 +9,7 @@ use App\Models\Seat;
 use App\Models\Space;
 use App\Services\SpaceService;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class SpaceController extends Controller
 {
@@ -59,9 +60,13 @@ class SpaceController extends Controller
         return redirect()->route('spaces');
     }
 
-    public function previewSpace(int $id)
+    public function previewSpace(int $id): View
     {
-        $space = Space::with('seats')->find($id);
+        $space = $this->spaceService->find($id);
+
+        if (!$space->layout) {
+            dd('missing layout');
+        }
 
         return view('space-preview', compact('space'));
     }

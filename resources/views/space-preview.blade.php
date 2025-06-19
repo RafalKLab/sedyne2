@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Space Preview – {{ $space->name }}</title>
+    <link rel="stylesheet" href="{{ asset('assets/space-body.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/space-builder.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/space-preview.css') }}">
 </head>
@@ -11,7 +12,7 @@
 <h1>Space: {{ $space->name }}</h1>
 
 @php
-    $layout = json_decode($space->layout, true);
+    $layout = $space->layout;
 
     $cells = $layout['layout'];
     $cols = $layout['cols'];
@@ -26,7 +27,7 @@
     $seats = collect($space->seats)->keyBy('index');
 @endphp
 
-<div class="container" style="display: grid; grid-template-columns: repeat({{ $cols }}, 60px); grid-template-rows: repeat({{ $rows }}, 60px);">
+<div class="office-container" style="display: grid; grid-template-columns: repeat({{ $cols }}, 60px); grid-template-rows: repeat({{ $rows }}, 60px);">
     @for ($r = 0; $r < $rows; $r++)
         @for ($c = 0; $c < $cols; $c++)
             @php
@@ -44,11 +45,11 @@
                                 <div class="backrest"></div>
                                 <div class="armrest-left"></div>
                                 <div class="armrest-right"></div>
-{{--                                @if ($seat)--}}
-{{--                                    <div style="position: absolute; bottom: 4px; right: 4px; background: #28a745; color: white; font-size: 10px; padding: 2px 4px; border-radius: 3px; z-index: 5;">--}}
-{{--                                        ID: {{ $seat['id'] }}--}}
-{{--                                    </div>--}}
-{{--                                @endif--}}
+                                @if ($seat)
+                                    <div style="position: absolute; bottom: 4px; right: 4px; background: #28a745; color: white; font-size: 10px; padding: 2px 4px; border-radius: 3px; z-index: 5;">
+                                        ID: {{ $seat['id'] }}
+                                    </div>
+                                @endif
                             </div>
                             @break
 

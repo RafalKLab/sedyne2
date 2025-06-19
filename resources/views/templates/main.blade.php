@@ -32,10 +32,18 @@
     <div class="collapse d-md-block" id="sidebarMenu">
         @auth
             <ul class="nav nav-pills flex-column mb-auto">
+
                 <li class="nav-item mb-1">
-                    <a href="{{ route('dashboard') }}"
-                       class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                        Dashboard
+                    <a href="{{ route('reservation.create') }}" class="btn btn-primary w-100 rounded-pill fw-bold">
+                        Reserve
+                    </a>
+                </li>
+                <hr>
+
+                <li class="nav-item mb-1">
+                    <a href="{{ route('reservation.index') }}"
+                       class="nav-link {{ request()->routeIs('reservation.index') ? 'active' : '' }}">
+                        My Reservations
                     </a>
                 </li>
                 <li class="nav-item mb-1">

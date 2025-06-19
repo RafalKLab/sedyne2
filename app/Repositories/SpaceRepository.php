@@ -16,4 +16,11 @@ class SpaceRepository
     {
         return Space::all()->map([SpaceData::class, 'fromModel'])->all();
     }
+
+    public function find(int $id): ?SpaceData
+    {
+        $space = Space::with('seats')->find($id);
+
+        return $space ? SpaceData::fromModel($space) : null;
+    }
 }

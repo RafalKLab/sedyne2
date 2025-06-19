@@ -1,0 +1,44 @@
+/* Base chair styles */
+.chair {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: center center;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+/* Available (green - darker) */
+.chair--available:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.chair--available .seat {
+    background: #1e7e34; /* Dark green */
+}
+
+.chair--available .backrest,
+.chair--available .armrest-left,
+.chair--available .armrest-right {
+    background: #218838; /* Slightly lighter dark green */
+}
+
+.chair--available:hover .seat,
+.chair--available:hover .backrest,
+.chair--available:hover .armrest-left,
+.chair--available:hover .armrest-right {
+    background: #34c759; /* Lighter green on hover */
+}
+
+/* Occupied (red - darker) */
+.chair--occupied {
+    cursor: not-allowed;
+}
+
+.chair--occupied .seat,
+.chair--occupied .backrest,
+.chair--occupied .armrest-left,
+.chair--occupied .armrest-right {
+    background: #a71d2a; /* Dark red */
+}

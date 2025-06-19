@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Interactive Grid - Chair/Table Setup</title>
+    <link rel="stylesheet" href="{{ asset('assets/space-body.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/space-builder.css') }}">
 </head>
 <body>
@@ -58,7 +59,7 @@
     </div>
 </div>
 
-<div class="container" id="grid"></div>
+<div class="office-container" id="grid"></div>
 
 <script src="{{ asset('js/space-builder.js') }}"></script>
 </body>

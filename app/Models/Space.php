@@ -12,6 +12,10 @@ class Space extends Model
         'layout'
     ];
 
+    protected $casts = [
+        'layout' => 'array',
+    ];
+
     public function seats(): HasMany
     {
         return $this->hasMany(Seat::class, 'space_id');
