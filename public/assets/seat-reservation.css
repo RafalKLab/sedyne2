@@ -42,3 +42,27 @@
 .chair--occupied .armrest-right {
     background: #a71d2a; /* Dark red */
 }
+
+/* Yours (primary - blueish) */
+.chair--mine .seat,
+.chair--mine .backrest,
+.chair--mine .armrest-left,
+.chair--mine .armrest-right {
+    background: #007bff; /* Bootstrap primary */
+}
+
+.chair--mine:hover .seat,
+.chair--mine:hover .backrest,
+.chair--mine:hover .armrest-left,
+.chair--mine:hover .armrest-right {
+    background: #339af0; /* Lighter blue on hover */
+}
+
+
+.seat {
+    color: #fff;
+    align-items: center;     /* vertical centering */
+    justify-content: center; /* horizontal centering */
+    text-align: center;
+}
+

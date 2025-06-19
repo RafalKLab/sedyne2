@@ -100,14 +100,26 @@
                             @if ($cell)
                                 @switch($cell['type'])
                                     @case('chair')
-                                        <div class="chair @if(array_key_exists($seat['id'], $reservations)) chair--occupied @else chair--available @endif" style="transform: rotate({{ $cell['rotation'] }}deg);"
-                                             wire:click="openReservationModal({{ $seat['id'] }})"
+                                        @php
+                                            $isReserved = array_key_exists($seat['id'], $reservations);
+                                            $isMine = $isReserved && $reservations[$seat['id']]['user_id'] === auth()->id();
+                                            $chairClass = $isMine
+                                                ? 'chair--mine'
+                                                : ($isReserved ? 'chair--occupied' : 'chair--available');
+                                        @endphp
+
+                                        <div
+                                            class="chair {{ $chairClass }}"
+                                            title="{{ $isMine ? 'Your reservation' : ($isReserved ? 'Occupied' : 'Available') }}"
+                                            style="transform: rotate({{ $cell['rotation'] }}deg);"
+                                            wire:click="openReservationModal({{ $seat['id'] }})"
                                         >
-                                            <div class="seat"></div>
+                                            <div class="seat">
+                                                {{ $seat['id'] }}
+                                            </div>
                                             <div class="backrest"></div>
                                             <div class="armrest-left"></div>
                                             <div class="armrest-right"></div>
-
                                         </div>
                                         @break
 
