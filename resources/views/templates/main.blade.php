@@ -7,8 +7,14 @@
 
     {{-- Bootstrap 5 CDN --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+
     <link rel="stylesheet" href="{{ asset('assets/main.css') }}">
     @yield('styles')
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -52,18 +58,6 @@
                         Spaces
                     </a>
                 </li>
-{{--                <li>--}}
-{{--                    <a href="{{ route('seats.index') }}"--}}
-{{--                       class="nav-link {{ request()->routeIs('seats.*') ? 'active' : '' }}">--}}
-{{--                        Reserve a Seat--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li>--}}
-{{--                    <a href="{{ route('reservations.index') }}"--}}
-{{--                       class="nav-link {{ request()->routeIs('reservations.*') ? 'active' : '' }}">--}}
-{{--                        My Reservations--}}
-{{--                    </a>--}}
-{{--                </li>--}}
                 <li>
                     <a href="{{ route('profile.edit') }}"
                        class="nav-link mb-1 {{ request()->routeIs('profile') ? 'active' : '' }}">
@@ -95,27 +89,34 @@
 <div class="main-content">
     <div class="container-fluid">
         @yield('content')
-{{--        <h2>Office Seat Reservation</h2>--}}
-
-{{--        --}}{{-- Example seat blocks --}}
-{{--        <div class="row g-3 mt-4">--}}
-{{--            @for ($i = 1; $i <= 12; $i++)--}}
-{{--                <div class="col-md-3">--}}
-{{--                    <div class="card text-center">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <h5 class="card-title">Seat #{{ $i }}</h5>--}}
-{{--                            <p class="card-text text-success">Available</p>--}}
-{{--                            <a href="#" class="btn btn-primary btn-sm">Reserve</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @endfor--}}
-{{--        </div>--}}
     </div>
 </div>
 
 {{-- Bootstrap JS --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{{-- Alerts --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        @if (session('success'))
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: '{{ session('success') }}',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            showClass: {
+                popup: 'swal2-show animate__animated animate__fadeInLeft'
+            },
+            hideClass: {
+                popup: 'swal2-hide animate__animated animate__fadeOut'
+            }
+        });
+        @endif
+    });
+</script>
+
 @yield('scripts')
 </body>
 </html>

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Data\ReservationCreateData;
+use App\Data\ReservationData;
 use App\Models\Reservation;
 
 class ReservationRepository
@@ -18,6 +19,15 @@ class ReservationRepository
             })
             ->get()
             ->toArray();
+    }
+
+    public function getReservationsByUser(int $id): array
+    {
+        return Reservation::where('user_id', $id)
+            ->with('space')
+            ->get()
+            ->map(fn($reservation) => ReservationData::fromModel($reservation))
+            ->all();
     }
 
     public function getReservationConflicts(int $selectedSeatId, string $dateFrom, string $dateTo): array

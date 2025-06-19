@@ -18,6 +18,11 @@ class ReservationService
         return $this->repository->getReservationsBySpaceAndDate($spaceId, $date);
     }
 
+    public function getReservationsByUser(int $id): array
+    {
+        return $this->repository->getReservationsByUser($id);
+    }
+
     public function getReservationConflicts(int $selectedSeatId, string $dateFrom, string $dateTo): array
     {
         return $this->repository->getReservationConflicts($selectedSeatId, $dateFrom, $dateTo);

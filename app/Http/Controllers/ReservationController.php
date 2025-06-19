@@ -5,13 +5,18 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Services\ReservationService;
 use Illuminate\View\View;
 
 class ReservationController extends Controller
 {
+    public function __construct(protected ReservationService $reservationService) {}
+
     public function index(): View
     {
-        return view('reservation.index');
+        $reservations = $this->reservationService->getReservationsByUser(auth()->id());
+
+        return view('reservation.index', compact('reservations'));
     }
 
     public function create(): View
