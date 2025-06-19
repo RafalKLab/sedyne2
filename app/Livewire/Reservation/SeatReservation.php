@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Reservation;
 
 use App\Data\ReservationCreateData;
 use App\Data\SpaceData;
-use App\Services\ReservationService;
-use App\Services\SpaceService;
 use Carbon\Carbon;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -13,6 +11,8 @@ use Livewire\Features\SupportRedirects\Redirector;
 
 class SeatReservation extends Component
 {
+    use SeatReservationHelper;
+
     public array $spaces;
     public int|string|null $selectedSpace = 0;
     public string $selectedDate;
@@ -24,9 +24,6 @@ class SeatReservation extends Component
     public array $reservations;
     public bool $showModal = false;
     public ?int $selectedSeatId = null;
-
-    public string $alertMessage = '';
-    public string $alertType = '';
 
     protected bool $canReserve = false;
 
@@ -74,16 +71,6 @@ class SeatReservation extends Component
         $this->selectedSeatId = $seatId;
         $this->checkAvailability();
         $this->showModal = true;
-    }
-
-    protected function getSpaceService(): SpaceService
-    {
-        return app(SpaceService::class);
-    }
-
-    protected function getReservationService(): ReservationService
-    {
-        return app(ReservationService::class);
     }
 
     protected function loadData(): void
@@ -164,24 +151,6 @@ class SeatReservation extends Component
         } else {
             $this->showDangerAlert('Reservation has conflicts.');
         }
-    }
-
-    protected function showDangerAlert(string $message): void
-    {
-        $this->alertType = 'danger';
-        $this->alertMessage = $message;
-    }
-
-    protected function showSuccessAlert(string $message = 'Seat is available, you can make reservation'): void
-    {
-        $this->alertType = 'success';
-        $this->alertMessage = $message;
-    }
-
-    protected function resetAlert(): void
-    {
-        $this->alertType = '';
-        $this->alertMessage = '';
     }
 
     protected function initDates(): void
