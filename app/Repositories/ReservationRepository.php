@@ -17,6 +17,7 @@ class ReservationRepository
             ->whereHas('seat', function ($query) use ($spaceId) {
                 $query->where('space_id', $spaceId);
             })
+            ->with(['user:id,name'])
             ->get()
             ->toArray();
     }

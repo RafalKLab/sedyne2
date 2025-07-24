@@ -102,19 +102,20 @@
                                     @case('chair')
                                         @php
                                             $isReserved = array_key_exists($seat['id'], $reservations);
+                                            $reservedBy = $isReserved ? $reservations[$seat['id']]['user']['name'] : '';
                                             $isMine = $isReserved && $reservations[$seat['id']]['user_id'] === auth()->id();
                                             $chairClass = $isMine
                                                 ? 'chair--mine'
                                                 : ($isReserved ? 'chair--occupied' : 'chair--available');
                                         @endphp
-
                                         <div
                                             class="chair {{ $chairClass }}"
-                                            title="{{ $isMine ? 'Your reservation' : ($isReserved ? 'Occupied' : 'Available') }}"
+                                            title="{{ $isMine ? 'Your reservation' : ($isReserved ? 'Occupied by: '.$reservedBy : 'Available') }}"
                                             style="transform: rotate({{ $cell['rotation'] }}deg);"
                                             wire:click="openReservationModal({{ $seat['id'] }})"
                                         >
-                                            <div class="seat">
+                                            <div class="seat"
+                                                 style="transform: rotate({{ $cell['rotation'] == 180 ? 180 : 0 }}deg);">
                                                 {{ $seat['id'] }}
                                             </div>
                                             <div class="backrest"></div>
