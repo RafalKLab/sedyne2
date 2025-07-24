@@ -33,7 +33,11 @@
                     <td>{{ $reservation->toDate }}</td>
                     <td>{{ $reservation->createdAt }}</td>
                     <td>
-                        <a href="" class="btn btn-outline-danger btn-sm w-100">Cancel</a>
+                        <form method="POST" action="{{ route('reservation.delete', ['id' => $reservation->id]) }}" >
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-outline-danger btn-sm w-100">Cancel reservation</button>
+                        </form>
                     </td>
                 </tr>
             @empty

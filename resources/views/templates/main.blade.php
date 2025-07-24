@@ -114,6 +114,24 @@
             }
         });
         @endif
+
+        @if (session('danger'))
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: '{{ session('danger') }}',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            showClass: {
+                popup: 'swal2-show animate__animated animate__fadeInLeft'
+            },
+            hideClass: {
+                popup: 'swal2-hide animate__animated animate__fadeOut'
+            }
+        });
+        @endif
     });
 </script>
 

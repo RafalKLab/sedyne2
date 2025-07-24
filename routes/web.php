@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/reservations', [ReservationController::class, 'index'])->name('reservation.index');
     Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservation.create');
+    Route::delete('/reservations/{id}', [ReservationController::class, 'delete'])->name('reservation.delete');
 });
 
 require __DIR__.'/auth.php';

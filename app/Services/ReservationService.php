@@ -32,4 +32,9 @@ class ReservationService
     {
         return $this->repository->createReservation($reservationCreateTransfer);
     }
+
+    public function deleteReservation(int $idUser, int $idReservation): array
+    {
+        return $this->repository->deleteReservation($idUser, $idReservation);
+    }
 }

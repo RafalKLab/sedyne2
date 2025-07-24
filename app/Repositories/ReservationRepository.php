@@ -52,4 +52,24 @@ class ReservationRepository
 
         return $reservationCreateTransfer->setId($reservation->id);
     }
+
+    public function deleteReservation(int $idUser, int $idReservation): array
+    {
+        $reservation = Reservation::where('user_id', $idUser)
+            ->where('id', $idReservation)
+            ->first();
+
+        if (!$reservation) {
+            return [
+                'success' => false,
+                'error' => 'Reservation not found',
+            ];
+        }
+
+        $reservation->delete();
+
+        return [
+            'success' => true,
+        ];
+    }
 }
