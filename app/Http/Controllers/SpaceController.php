@@ -35,6 +35,12 @@ class SpaceController extends Controller
 
     public function setupLayout(int $id)
     {
+        $space = $this->spaceService->find($id);
+
+        if ($space->layout) {
+            dd('Unfortunately the space has already been set up and has reservations :(');
+        }
+
         return view('space-creator', compact('id'));
     }
 
@@ -65,7 +71,7 @@ class SpaceController extends Controller
         $space = $this->spaceService->find($id);
 
         if (!$space->layout) {
-            dd('missing layout');
+            dd('Unfortunately the space has not been set up, there is nothing to preview :(');
         }
 
         return view('space-preview', compact('space'));

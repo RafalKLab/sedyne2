@@ -45,15 +45,20 @@
                         <td>{{ $space->id  }}</td>
                         <td class="fw-medium">{{ $space->name }}</td>
                         <td>
-                            <a href="{{ route('setup-layout', ['id' => $space->id]) }}" class="btn btn-sm btn-outline-primary me-2">
-                                Setup layout
-                            </a>
-                            <a href="{{ route('space-preview', ['id' => $space->id]) }}" class="btn btn-sm btn-outline-secondary">
-                                Preview
-                            </a>
-                            <a href="" class="btn btn-sm btn-outline-danger">
-                                Delete
-                            </a>
+                            <div class="action-buttons">
+                                @if ($space->layout)
+                                    <a href="{{ route('space-preview', ['id' => $space->id]) }}" class="btn btn-sm btn-outline-secondary">
+                                        Preview layout
+                                    </a>
+                                @else
+                                    <a href="{{ route('setup-layout', ['id' => $space->id]) }}" class="btn btn-sm btn-outline-primary">
+                                        Setup layout
+                                    </a>
+                                @endif
+                                <a href="" class="btn btn-sm btn-outline-danger">
+                                    Delete
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 @empty

@@ -26,6 +26,11 @@ body {
     padding: 2rem;
 }
 
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
 @media (max-width: 768px) {
     .sidebar {
         position: relative;

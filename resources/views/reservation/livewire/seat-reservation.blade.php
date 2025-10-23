@@ -128,6 +128,10 @@
                                         <div class="table" style="transform: rotate({{ $cell['rotation'] }}deg);"></div>
                                         @break
 
+                                    @case('door')
+                                        <div class="door" style="transform: rotate({{ $cell['rotation'] }}deg);"></div>
+                                        @break
+
                                     @case('table-monitor')
                                         <div style="width: 100%; height: 100%; position: relative; transform: rotate({{ $cell['rotation'] }}deg);">
                                             <div class="table"></div>
