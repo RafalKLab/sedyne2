@@ -43,18 +43,29 @@
                 @forelse ($spaces as $space)
                     <tr>
                         <td>{{ $space->id  }}</td>
-                        <td class="fw-medium">{{ $space->name }}</td>
+                        <td class="fw-medium">
+                            @if(auth()->user()->settings->primary_space_id === $space->id)<span style="color: red"><i class="fa-solid fa-heart"></i></span>@endif
+                             {{ $space->name }} </td>
                         <td>
                             <div class="action-buttons">
-                                @if ($space->layout)
-                                    <a href="{{ route('space-preview', ['id' => $space->id]) }}" class="btn btn-sm btn-outline-secondary">
-                                        Preview layout
-                                    </a>
-                                @else
-                                    <a href="{{ route('setup-layout', ['id' => $space->id]) }}" class="btn btn-sm btn-outline-primary">
-                                        Setup layout
-                                    </a>
-                                @endif
+                                <div>
+                                    @if ($space->layout)
+                                        <a href="{{ route('space-preview', ['id' => $space->id]) }}" class="btn btn-sm btn-outline-secondary">
+                                            Preview layout
+                                        </a>
+                                    @else
+                                        <a href="{{ route('setup-layout', ['id' => $space->id]) }}" class="btn btn-sm btn-outline-primary">
+                                            Setup layout
+                                        </a>
+                                    @endif
+                                    @if(auth()->user()->settings->primary_space_id !== $space->id)
+                                            <form style="display: inline" action="{{ route('space-set-primary', ['id' => $space->id]) }}" method="POST">
+                                                @csrf
+                                                <button class="btn btn-sm btn-primary">Make your primary</button>
+                                            </form>
+                                    @endif
+
+                                </div>
                                 <a href="" class="btn btn-sm btn-outline-danger">
                                     Delete
                                 </a>

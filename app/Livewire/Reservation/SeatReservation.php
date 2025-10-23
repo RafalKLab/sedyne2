@@ -80,8 +80,12 @@ class SeatReservation extends Component
 
     protected function loadSpaceData(): void
     {
+        $primaryId = auth()->user()->settings->primary_space_id;
+
         $this->spaces = collect($this->getSpaceService()->findAll())
             ->map(fn(SpaceData $dto) => $dto->toArray())
+            ->sortByDesc(fn(array $space) => $space['id'] === $primaryId)
+            ->values()
             ->all();
     }
 

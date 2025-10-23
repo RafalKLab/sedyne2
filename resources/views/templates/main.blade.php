@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 
+    <!-- Font Awesome Free CDN -->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+
     <link rel="stylesheet" href="{{ asset('assets/main.css') }}">
     @yield('styles')
 

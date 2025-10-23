@@ -152,8 +152,5 @@
                 Missing space or layout.
             </div>
         @endif
-{{--        @dump($spaces[$selectedSpace])--}}
-{{--        @dump($selectedDate)--}}
-{{--        @dump($reservations)--}}
     </div>
 </div>

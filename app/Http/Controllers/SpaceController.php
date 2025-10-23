@@ -76,4 +76,19 @@ class SpaceController extends Controller
 
         return view('space-preview', compact('space'));
     }
+
+    public function setPrimary(int $id) {
+        $space = $this->spaceService->find($id);
+
+        if (!$space) {
+            dd('You are trying to set primary space that doesn\'t exist :(');
+        }
+
+        // todo: Refactor with service and repository
+        $user = auth()->user();
+        $user->settings->primary_space_id = $space->id;
+        $user->settings->save();
+
+        return redirect()->route('spaces');
+    }
 }

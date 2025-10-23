@@ -24,10 +24,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/spaces', [SpaceController::class, 'index'])->name('spaces');
     Route::post('/spaces', [SpaceController::class, 'storeSpace']);
 
-    Route::get('/space/{id}/layout', [SpaceController::class, 'setupLayout'])->name('setup-layout');
-    Route::post('/space/{id}/layout', [SpaceController::class, 'saveLayout']);
+    Route::get('/spaces/{id}/layout', [SpaceController::class, 'setupLayout'])->name('setup-layout');
+    Route::post('/spaces/{id}/layout', [SpaceController::class, 'saveLayout']);
 
-    Route::get('/space/{id}/preview', [SpaceController::class, 'previewSpace'])->name('space-preview');
+    Route::get('/spaces/{id}/preview', [SpaceController::class, 'previewSpace'])->name('space-preview');
+
+    Route::post('/spaces/{id}/set-primary', [SpaceController::class, 'setPrimary'])->name('space-set-primary');
 
     Route::get('/reservations', [ReservationController::class, 'index'])->name('reservation.index');
     Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservation.create');
