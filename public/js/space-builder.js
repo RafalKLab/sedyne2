@@ -70,6 +70,12 @@ function createGrid(rows, cols, callback = null) {
                     table.style.transform = `rotate(${currentRotation}deg)`;
                     cell.appendChild(table);
 
+                } else if (currentMode === 'door') {
+                    const door = document.createElement('div');
+                    door.className = 'door';
+                    door.style.transform = `rotate(${currentRotation}deg)`;
+                    cell.appendChild(door);
+
                 } else if (currentMode === 'table-monitor') {
                     const wrapper = document.createElement('div');
                     wrapper.style.width = '100%';
@@ -131,8 +137,6 @@ document.getElementById('applyGridBtn').addEventListener('click', () => {
 
 document.getElementById('exportBtn').addEventListener('click', () => {
 
-    alert('in progress');
-
     const cells = document.querySelectorAll('.cell');
     const layout = [];
 
@@ -152,6 +156,10 @@ document.getElementById('exportBtn').addEventListener('click', () => {
                 rotation = match ? parseInt(match[1]) : 0;
             } else if (content.classList.contains('table')) {
                 type = 'table';
+                const match = content.style.transform.match(/rotate\((\d+)deg\)/);
+                rotation = match ? parseInt(match[1]) : 0;
+            } else if (content.classList.contains('door')) {
+                type = 'door';
                 const match = content.style.transform.match(/rotate\((\d+)deg\)/);
                 rotation = match ? parseInt(match[1]) : 0;
             }
@@ -257,7 +265,11 @@ function importLayout(layout) {
             table.className = 'table';
             table.style.transform = `rotate(${rotation}deg)`;
             cell.appendChild(table);
-
+        } else if (type === 'door') {
+            const door = document.createElement('div');
+            door.className = 'door';
+            door.style.transform = `rotate(${rotation}deg)`;
+            cell.appendChild(door);
         } else if (type === 'table-monitor') {
             const wrapper = document.createElement('div');
             wrapper.style.width = '100%';
@@ -320,6 +332,11 @@ document.getElementById('saveForm').addEventListener('submit', function (e) {
                     const match = content.style.transform.match(/rotate\((\d+)deg\)/);
                     rotation = match ? parseInt(match[1]) : 0;
                     console.log(`Detected TABLE at row: ${r}, col: ${c}, rotation: ${rotation}`);
+                } else if (content.classList.contains('door')) {
+                    type = 'door';
+                    const match = content.style.transform.match(/rotate\((\d+)deg\)/);
+                    rotation = match ? parseInt(match[1]) : 0;
+                    console.log(`Detected DOOR at row: ${r}, col: ${c}, rotation: ${rotation}`);
                 } else {
                     console.log(`Detected UNKNOWN element at row: ${r}, col: ${c}`);
                 }
@@ -373,6 +390,10 @@ function updatePreview() {
     } else if (currentMode === 'table') {
         element = document.createElement('div');
         element.className = 'table';
+        element.style.transform = `rotate(${currentRotation}deg)`;
+    } else if (currentMode === 'door') {
+        element = document.createElement('div');
+        element.className = 'door';
         element.style.transform = `rotate(${currentRotation}deg)`;
 
     } else if (currentMode === 'table-monitor') {

@@ -34,6 +34,7 @@
 
 <div class="toolbar">
     <div class="toolbar-left">
+        <button data-mode="door" class="tool-button">Door</button>
         <button data-mode="chair" class="tool-button active">Chair</button>
         <button data-mode="table" class="tool-button">Table</button>
         <button data-mode="table-monitor" class="tool-button">Table + Monitor</button>
