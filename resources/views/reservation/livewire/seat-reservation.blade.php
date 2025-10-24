@@ -110,7 +110,7 @@
                                         @endphp
                                         <div
                                             class="chair {{ $chairClass }}"
-                                            title="{{ $isMine ? 'Your reservation' : ($isReserved ? 'Occupied by: '.$reservedBy : 'Available') }}"
+                                            title="{{ $isMine ? 'Your reservation' : ($isReserved ? 'Reserved by: '.$reservedBy : 'Available') }}"
                                             style="transform: rotate({{ $cell['rotation'] }}deg);"
                                             wire:click="openReservationModal({{ $seat['id'] }})"
                                         >

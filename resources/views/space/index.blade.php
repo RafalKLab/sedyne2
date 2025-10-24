@@ -66,7 +66,7 @@
                                     @endif
 
                                 </div>
-                                <a href="" class="btn btn-sm btn-outline-danger">
+                                <a href="" class="btn btn-sm btn-outline-danger disabled">
                                     Delete
                                 </a>
                             </div>

@@ -33,7 +33,7 @@
 
 /* Occupied (red - darker) */
 .chair--occupied {
-    cursor: not-allowed;
+    cursor: default;
 }
 
 .chair--occupied .seat,
